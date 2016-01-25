@@ -72,7 +72,7 @@ public class SServer extends AppCompatActivity {
     }
 
     private class SocketServerThread extends Thread {
-        static final int SocketServerPort = 8888;
+        static final int SocketServerPort = 1234;
         int count = 0;
 
         @Override
@@ -98,6 +98,7 @@ public class SServer extends AppCompatActivity {
                     });
 
                     SocketServerReplyThread socketServerReplyThread = new SocketServerReplyThread(socket, count);
+                    socketServerReplyThread.run();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

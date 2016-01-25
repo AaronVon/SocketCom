@@ -5,6 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/et_server_address"
+        android:hint="input server address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/et_server_port"
+        android:hint="input server port"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/bt_connect"
+        android:text="Connect"
+        android:onClick="connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_clear"
+        android:text="Clear"
+        android:onClick="clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_response"
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SServer"
             android:textColor="@android:color/white"
@@ -29,7 +29,7 @@
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SClient"
             android:textColor="@android:color/white"
