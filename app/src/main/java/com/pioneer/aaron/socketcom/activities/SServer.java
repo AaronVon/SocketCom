@@ -2,6 +2,7 @@ package com.pioneer.aaron.socketcom.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -175,13 +176,19 @@ public class SServer extends AppCompatActivity {
         public void run() {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
-                    final String read = input.readLine();
+                    /*final String read = input.readLine();
                     SServer.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(SServer.this, read, Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });*/
+                    Log.d("COMMUNICATION----", input.readLine());
+
+                    PrintStream printStream = new PrintStream(clientSocket.getOutputStream());
+                    printStream.print("OK");
+                    printStream.close();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
