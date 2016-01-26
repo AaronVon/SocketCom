@@ -24,9 +24,7 @@
             android:background="@color/colorPrimary"
             android:id="@+id/button_server"
             android:onClick="switchfunction"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"
@@ -37,9 +35,18 @@
             android:layout_marginTop="@dimen/base_margin"
             android:id="@+id/button_client"
             android:onClick="switchfunction"
-            android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/button_server"
-            android:layout_alignStart="@+id/button_server" />
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/button_sendmsg"
+            android:text="send message"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/base_margin"
+            android:onClick="switchfunction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>

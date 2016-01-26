@@ -46,8 +46,8 @@ public class SClient extends AppCompatActivity {
 
     @OnClick(R.id.bt_connect)
     public void connect(Button button) {
-        ClientTask clientTask = new ClientTask(et_server_address.getText().toString(), Integer.parseInt(et_server_port.getText().toString()));
-//        ClientTask clientTask = new ClientTask("192.168.31.107", 1234);
+//        ClientTask clientTask = new ClientTask(et_server_address.getText().toString(), Integer.parseInt(et_server_port.getText().toString()));
+        ClientTask clientTask = new ClientTask("192.168.31.107", 1234);
 
         clientTask.execute();
     }

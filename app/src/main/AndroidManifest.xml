@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".activities.SClient" />
         <activity android:name=".activities.SServer" />
+        <activity android:name=".activities.SClient_msg" />
     </application>
 
     <!--permissions-->

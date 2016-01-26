@@ -3,10 +3,13 @@ package com.pioneer.aaron.socketcom.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pioneer.aaron.socketcom.R;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -45,8 +48,9 @@ public class SServer extends AppCompatActivity {
     private void loadView() {
         info_ip.setText(getIPAddress());
 
-        Thread socketServerThread = new Thread(new SocketServerThread());
-        socketServerThread.start();
+//        Thread socketServerThread = new Thread(new SocketServerThread());
+//        socketServerThread.start();
+        new SocketServerThread().start();
     }
 
     private String getIPAddress() {
@@ -97,8 +101,13 @@ public class SServer extends AppCompatActivity {
                         }
                     });
 
-                    SocketServerReplyThread socketServerReplyThread = new SocketServerReplyThread(socket, count);
-                    socketServerReplyThread.run();
+//                    SocketServerReplyThread socketServerReplyThread = new SocketServerReplyThread(socket, count);
+//                    socketServerReplyThread.run();
+//                    new SocketServerReplyThread(socket, count).run();
+                    //注意多个线程抢占同一端口
+                    
+                    CommunicationThread communicationThread = new CommunicationThread(socket);
+                    new Thread(communicationThread).start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -148,6 +157,38 @@ public class SServer extends AppCompatActivity {
             });
         }
     }
+
+    private class CommunicationThread implements Runnable {
+        Socket clientSocket;
+        BufferedReader input;
+
+        public CommunicationThread(Socket clientSocket) {
+            this.clientSocket = clientSocket;
+            try {
+                this.input = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void run() {
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    final String read = input.readLine();
+                    SServer.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(SServer.this, read, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     @Override
     protected void onDestroy() {

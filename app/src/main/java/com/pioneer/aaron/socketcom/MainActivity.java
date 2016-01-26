@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.pioneer.aaron.socketcom.activities.SClient;
+import com.pioneer.aaron.socketcom.activities.SClient_msg;
 import com.pioneer.aaron.socketcom.activities.SServer;
 
 import butterknife.ButterKnife;
@@ -14,7 +15,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
 
-    @OnClick({R.id.button_client, R.id.button_server})
+    @OnClick({R.id.button_client, R.id.button_server, R.id.button_sendmsg})
     public void switchfunction(View view) {
         switch (view.getId()) {
             case R.id.button_client:
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button_server:
                 startActivity(new Intent(this, SServer.class));
+                break;
+            case R.id.button_sendmsg:
+                startActivity(new Intent(this, SClient_msg.class));
                 break;
         }
     }
